@@ -9,6 +9,8 @@
   --white-color: #ffffff;
   --accent-color: #2196f3;
   --additional-accent-color: #188ce8;
+  --def-transition-duration: 250ms;
+  --def-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* global styles */
@@ -130,6 +132,26 @@ img {
   padding-bottom: 32px;
   font-size: 14px;
   line-height: 1.142;
+  transition: color var(--def-transition-duration) var(--def-timing-function);
+  position: relative;
+}
+
+.header-nav .link::after {
+  content: "";
+  display: inline-block;
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(33, 150, 243, 1);
+  opacity: 0;
+  transition: opacity var(--def-transition-duration) var(--def-timing-function);
+}
+
+.header-nav .link:hover::after {
+  opacity: 1;
 }
 
 .header-contacts .link {
@@ -137,6 +159,7 @@ img {
   font-size: 14px;
   display: flex;
   align-items: center;
+  transition: color var(--def-transition-duration) var(--def-timing-function);
 }
 
 .header-contacts .link .icon {
@@ -195,10 +218,12 @@ img {
   border: none;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
   border-radius: 4px;
+  transition: background-color var(--def-transition-duration)
+    var(--def-timing-function);
 }
 
 .hero .button:hover,
-.hero .button:visited {
+.hero .button:focus {
   background-color: var(--additional-accent-color);
 }
 
@@ -268,6 +293,26 @@ img {
 
 .gallery .item {
   margin-right: 30px;
+  position: relative;
+}
+
+.subtitle-container {
+  position: absolute;
+  bottom: 0;
+  background-color: rgba(47, 48, 58, 0.8);
+  width: 100%;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gallery .subtitle {
+  color: var(--white-color);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.17;
+  text-transform: uppercase;
 }
 
 /* team section */
@@ -330,6 +375,8 @@ img {
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: color var(--def-transition-duration) var(--def-timing-function),
+    background-color var(--def-transition-duration) var(--def-timing-function);
 }
 
 .socials-link:hover {
@@ -377,6 +424,8 @@ img {
   border: 1px solid #afb1b8;
   border-radius: 4px;
   color: rgba(175, 177, 184, 1);
+  transition: color var(--def-transition-duration) var(--def-timing-function),
+    border var(--def-transition-duration) var(--def-timing-function);
 }
 
 .clients-item:not(:last-child) {
@@ -417,6 +466,9 @@ img {
   border: none;
   border-radius: 4px;
   padding: 6px 22px;
+  transition: color var(--def-transition-duration) var(--def-timing-function),
+    background-color var(--def-transition-duration) var(--def-timing-function),
+    filter var(--def-transition-duration) var(--def-timing-function);
 }
 
 .projects .button:hover,
@@ -454,6 +506,37 @@ img {
   margin-bottom: 30px;
 }
 
+.projects .thumb {
+  position: relative;
+  overflow: hidden;
+}
+
+.projects .label {
+  background: rgba(33, 150, 243, 0.9);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transform: translateY(100%);
+  transition: transform var(--def-transition-duration)
+    var(--def-timing-function);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.label .description {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.56;
+  letter-spacing: 0.03em;
+  color: var(--white-color);
+  max-width: 322px;
+}
+
+.project-list .item:hover .label {
+  transform: translateY(0%);
+}
+
 .projects-link {
   display: block;
   width: 100%;
@@ -469,6 +552,8 @@ img {
 
 .projects .projects-link {
   text-decoration: none;
+  transition: box-shadow var(--def-transition-duration)
+    var(--def-timing-function);
 }
 
 .projects .projects-link:hover,
@@ -533,6 +618,7 @@ img {
   letter-spacing: 0.03em;
   text-decoration: none;
   margin-bottom: 9px;
+  transition: color var(--def-transition-duration) var(--def-timing-function);
 }
 
 .footer-contacts .address:hover,
@@ -550,6 +636,7 @@ img {
   font-size: 14px;
   letter-spacing: 0.03em;
   line-height: 1.71;
+  transition: color var(--def-transition-duration) var(--def-timing-function);
 }
 
 .footer-contacts .link:hover,
@@ -574,4 +661,65 @@ img {
 
 .footer .socials-link:hover {
   background-color: var(--accent-color);
+}
+
+/*------ MODAL WINDOW -----  */
+
+.backdrop {
+  top: 0;
+  left: 0;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  opacity: 1;
+  transition: opacity 500ms var(--def-timing-function);
+}
+
+.backdrop.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.backdrop.is-hidden .modal {
+  transform: translate(-50%, -50%) scale(0.8);
+}
+
+.modal {
+  position: fixed;
+  min-width: 528px;
+  min-height: 581px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  background-color: var(--white-color);
+  transition: transform var(--def-transition-duration)
+    var(--def-timing-function);
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--white-color);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  color: var(--primary-text-color);
+  transition: filter var(--def-transition-duration) var(--def-timing-function),
+    color var(--def-transition-duration) var(--def-timing-function);
+}
+
+.modal-close-btn:hover,
+.modal-close-btn:focus {
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  color: #dd4124;
+}
+
+.modal-close-icon {
+  fill: currentColor;
 }

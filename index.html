@@ -53,7 +53,7 @@
     <section class="hero">
       <div class="container">
         <h1 class="title">Эффективные решения для вашего бизнеса</h1>
-        <button class="button" type="button">Заказать услугу</button>
+        <button class="button" type="button" data-modal-open>Заказать услугу</button>
       </div>
     </section>
     <section class="approach">
@@ -105,9 +105,21 @@
       <div class="container">
         <h2 class="title">Чем мы занимаемся</h2>
         <ul class="gallery">
-          <li class="item"><img src="./images/gallery1.jpg" alt="working process" width="370"></li>
-          <li class="item"><img src="./images/gallery2.jpg" alt="working process" width="370"></li>
-          <li class="item"><img src="./images/gallery3.jpg" alt="worling process" width="370"></li>
+          <li class="item"><img src="./images/gallery1.jpg" alt="working process" width="370">
+            <div class="subtitle-container">
+              <h3 class="subtitle">Десктопные приложения</h3>
+            </div>
+          </li>
+          <li class="item"><img src="./images/gallery2.jpg" alt="working process" width="370">
+            <div class="subtitle-container">
+              <h3 class="subtitle">Мобильные приложения</h3>
+            </div>
+          </li>
+          <li class="item"><img src="./images/gallery3.jpg" alt="worling process" width="370">
+            <div class="subtitle-container">
+              <h3 class="subtitle">Дизайнерские решения</h3>
+            </div>
+          </li>
         </ul>
       </div>
     </section>
@@ -365,6 +377,16 @@
       </div>
     </div>
   </footer>
+  <div class="backdrop is-hidden" data-modal>
+    <div class="modal">
+      <button class="modal-close-btn" data-modal-close>
+        <svg class="modal-close-icon" width="18px" height="18px">
+          <use href="images/icon-sprite.svg#icon-close"></use>
+        </svg>
+      </button>
+    </div>
+  </div>
+  <script src="./js/modal.js"></script>
 </body>
 
 </html>
