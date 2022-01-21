@@ -136,7 +136,7 @@ img {
   position: relative;
 }
 
-.header-nav .link::after {
+.link.current::after {
   content: "";
   display: inline-block;
   width: 100%;
@@ -146,12 +146,7 @@ img {
   bottom: 0;
   left: 0;
   background-color: rgba(33, 150, 243, 1);
-  opacity: 0;
   transition: opacity var(--def-transition-duration) var(--def-timing-function);
-}
-
-.header-nav .link:hover::after {
-  opacity: 1;
 }
 
 .header-contacts .link {
